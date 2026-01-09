@@ -1,0 +1,27 @@
+export type { GstsConfig } from './compiler/gsts_config.js'
+
+export { compileTsToGs, compileTsToGsFromConfig } from './compiler/ts_to_gs_pipeline.js'
+
+export {
+  emitIrJsonForEntries,
+  hasEntryMarker,
+  resolveIrOutputPath
+} from './compiler/gs_to_ir_json_transform/index.js'
+
+export {
+  resolveGiaOutputPath,
+  writeGiaFromIrJsonFile,
+  writeGiaFromIrJsonFiles
+} from './compiler/ir_to_gia_pipeline.js'
+
+export { createInjector, injectGilBytes, injectGilFile } from './injector/index.js'
+
+export type {
+  InjectGilFileOptions,
+  InjectGilFileResult,
+  InjectGilInput,
+  InjectGilResult,
+  Injector
+} from './injector/index.js'
+
+export * from './definitions/prefabs.js'

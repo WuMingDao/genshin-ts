@@ -1,0 +1,2 @@
+queryCustomVariableSnapshot	query_custom_variable_snapshot	no stable CustomVariableSnapshotValue producer
+modifyStructure	modify_structure	missing in vendor NODE_ID

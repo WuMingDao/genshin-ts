@@ -1,0 +1,14 @@
+{
+  "name": "create-genshin-ts",
+  "version": "0.1.0",
+  "description": "Create a Genshin-TS project",
+  "type": "module",
+  "bin": {
+    "create-genshin-ts": "bin/create-genshin-ts.mjs"
+  },
+  "files": [
+    "bin",
+    "templates",
+    "README.md"
+  ]
+}

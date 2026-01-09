@@ -1,0 +1,294 @@
+// @ts-nocheck thirdparty
+
+import { ClientVarType, VarBase_Class, VarType } from '../protobuf/gia.proto.js'
+
+export interface TypeEntry {
+  Name: string // Safe name used as object keys or query keys
+  Translations: Translations // Raw texts displayed in game
+  ID: number // An in-game unique id of the entry
+  ClientID: number | null // An in-game unique id of the any type in client
+  Expression: string // Static representation expression for convertor
+  DSLName: string // Name of var class(type) in DSL
+  BaseType: string // Base type of the entry in game runtime
+  BaseTypeID: number // Id of the base type
+}
+export const Language = [
+  'cs',
+  'de',
+  'es',
+  'en',
+  'fr',
+  'it',
+  'ja',
+  'ko',
+  'pl',
+  'pt-BR',
+  'ru',
+  'tr',
+  'zh-Hans',
+  'zh-Hant'
+] as const
+export type Translations = Partial<{ [key in (typeof Language)[number]]: string }> // Display names of the entry in different languages
+
+export const TYPES_LIST = [
+  {
+    Name: 'Entity',
+    Translations: { en: 'Entity' },
+    ID: VarType.Entity,
+    ClientID: ClientVarType.Entity_,
+    Expression: 'Ety',
+    DSLName: 'Entity',
+    BaseType: 'IdBase',
+    BaseTypeID: VarBase_Class.IdBase
+  },
+  {
+    Name: 'GUID',
+    Translations: { en: 'GUID' },
+    ID: VarType.GUID,
+    ClientID: ClientVarType.GUID_,
+    Expression: 'Gid',
+    DSLName: 'GUID',
+    BaseType: 'IdBase',
+    BaseTypeID: VarBase_Class.IdBase
+  },
+  {
+    Name: 'Integer',
+    Translations: { en: 'Integer' },
+    ID: VarType.Integer,
+    ClientID: ClientVarType.Integer_,
+    Expression: 'Int',
+    DSLName: 'Int',
+    BaseType: 'IntBase',
+    BaseTypeID: VarBase_Class.IntBase
+  },
+  {
+    Name: 'Boolean',
+    Translations: { en: 'Boolean' },
+    ID: VarType.Boolean,
+    ClientID: ClientVarType.Boolean_,
+    Expression: 'Bol',
+    DSLName: 'Bool',
+    BaseType: 'EnumBase',
+    BaseTypeID: VarBase_Class.EnumBase
+  },
+  {
+    Name: 'Float',
+    Translations: { en: 'Floating Point Numbers' },
+    ID: VarType.Float,
+    ClientID: ClientVarType.Float_,
+    Expression: 'Flt',
+    DSLName: 'Float',
+    BaseType: 'FloatBase',
+    BaseTypeID: VarBase_Class.FloatBase
+  },
+  {
+    Name: 'String',
+    Translations: { en: 'String' },
+    ID: VarType.String,
+    ClientID: ClientVarType.String_,
+    Expression: 'Str',
+    DSLName: 'String',
+    BaseType: 'StringBase',
+    BaseTypeID: VarBase_Class.StringBase
+  },
+  {
+    Name: 'GUIDList',
+    Translations: { en: 'GUID List' },
+    ID: VarType.GUIDList,
+    ClientID: ClientVarType.GUIDList_,
+    Expression: 'L<Gid>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'IntegerList',
+    Translations: { en: 'Integer List' },
+    ID: VarType.IntegerList,
+    ClientID: ClientVarType.IntegerList_,
+    Expression: 'L<Int>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'BooleanList',
+    Translations: { en: 'Boolean List' },
+    ID: VarType.BooleanList,
+    ClientID: ClientVarType.BooleanList_,
+    Expression: 'L<Bol>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'FloatList',
+    Translations: { en: 'Floating Point Numbers List' },
+    ID: VarType.FloatList,
+    ClientID: ClientVarType.FloatList_,
+    Expression: 'L<Flt>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'StringList',
+    Translations: { en: 'String List' },
+    ID: VarType.StringList,
+    ClientID: ClientVarType.StringList_,
+    Expression: 'L<Str>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'Vector',
+    Translations: { en: '3D Vector' },
+    ID: VarType.Vector,
+    ClientID: ClientVarType.Vector_,
+    Expression: 'Vec',
+    DSLName: 'Vector',
+    BaseType: 'VectorBase',
+    BaseTypeID: VarBase_Class.VectorBase
+  },
+  {
+    Name: 'EntityList',
+    Translations: { en: 'Entity List' },
+    ID: VarType.EntityList,
+    ClientID: ClientVarType.EntityList_,
+    Expression: 'L<Ety>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'EnumItem',
+    Translations: { en: 'Enum Item' },
+    ID: VarType.EnumItem,
+    ClientID: ClientVarType.EnumItem_,
+    Expression: 'E<?>',
+    DSLName: 'Enum',
+    BaseType: 'EnumBase',
+    BaseTypeID: VarBase_Class.EnumBase
+  },
+  {
+    Name: 'VectorList',
+    Translations: { en: '3D Vector List' },
+    ID: VarType.VectorList,
+    ClientID: ClientVarType.VectorList_,
+    Expression: 'L<Vec>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'LocalVariable',
+    Translations: { en: 'Local Variable' },
+    ID: VarType.LocalVariable,
+    ClientID: ClientVarType.LocalVariable_,
+    Expression: 'E<1016>',
+    DSLName: 'Entity',
+    BaseType: 'Unknown',
+    BaseTypeID: VarBase_Class.Unknown
+  },
+  {
+    Name: 'Faction',
+    Translations: { en: 'Faction' },
+    ID: VarType.Faction,
+    ClientID: ClientVarType.Faction_,
+    Expression: 'Fct',
+    DSLName: 'Faction',
+    BaseType: 'IdBase',
+    BaseTypeID: VarBase_Class.IdBase
+  },
+  {
+    Name: 'Configuration',
+    Translations: { en: 'Configuration ID' },
+    ID: VarType.Configuration,
+    ClientID: ClientVarType.Configuration_,
+    Expression: 'Cfg',
+    DSLName: 'ConfigId',
+    BaseType: 'IdBase',
+    BaseTypeID: VarBase_Class.IdBase
+  },
+  {
+    Name: 'Prefab',
+    Translations: { en: 'Prefab ID' },
+    ID: VarType.Prefab,
+    ClientID: ClientVarType.Prefab_,
+    Expression: 'Pfb',
+    DSLName: 'Prefab',
+    BaseType: 'IdBase',
+    BaseTypeID: VarBase_Class.IdBase
+  },
+  {
+    Name: 'ConfigurationList',
+    Translations: { en: 'Configuration List' },
+    ID: VarType.ConfigurationList,
+    ClientID: ClientVarType.ConfigurationList_,
+    Expression: 'L<Cfg>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'PrefabList',
+    Translations: { en: 'Prefab List' },
+    ID: VarType.PrefabList,
+    ClientID: ClientVarType.PrefabList_,
+    Expression: 'L<Pfb>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'FactionList',
+    Translations: { en: 'Faction List' },
+    ID: VarType.FactionList,
+    ClientID: null,
+    Expression: 'L<Fct>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'Struct',
+    Translations: { en: 'Structure' },
+    ID: VarType.Struct,
+    ClientID: null,
+    Expression: 'S<?>',
+    DSLName: 'Struct',
+    BaseType: 'StructBase',
+    BaseTypeID: VarBase_Class.StructBase
+  },
+  {
+    Name: 'StructList',
+    Translations: { en: 'Structure List' },
+    ID: VarType.StructList,
+    ClientID: null,
+    Expression: 'L<S<?>>',
+    DSLName: 'List',
+    BaseType: 'ArrayBase',
+    BaseTypeID: VarBase_Class.ArrayBase
+  },
+  {
+    Name: 'Dictionary',
+    Translations: { en: 'Dictionary' },
+    ID: VarType.Dictionary,
+    ClientID: null,
+    Expression: 'D<?,?>',
+    DSLName: 'Dict',
+    BaseType: 'DictionaryBase',
+    BaseTypeID: VarBase_Class.MapBase
+  },
+  {
+    Name: 'VariableSnapshot',
+    Translations: { en: 'Custom Variable Component Snapshot' },
+    ID: VarType.VariableSnapshot,
+    ClientID: null,
+    Expression: 'E<1028>',
+    DSLName: 'Entity',
+    BaseType: 'Unknown',
+    BaseTypeID: VarBase_Class.Unknown
+  }
+] as const satisfies TypeEntry[]

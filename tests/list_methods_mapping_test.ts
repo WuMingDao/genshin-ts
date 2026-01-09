@@ -1,0 +1,56 @@
+import { g } from 'genshin-ts/runtime/core'
+
+g.server({
+  id: 1073741869
+}).on('whenEntityIsCreated', (evt, f) => {
+  const ints = list('int', [1n, 2n, 3n])
+  const ints2 = list('int', [1n, 2n, 3n])
+
+  ints.forEach((v) => {
+    f.printString(str(v))
+  })
+
+  const mapped = ints.map((v) => v + 1n)
+  const filtered = ints.filter((v) => v > 1n)
+  const sum = ints.reduce((acc, v) => acc + v, 0n)
+  const anyMatch = ints.some((v) => v > 2n)
+  const someMatch = ints.some((v) => v == 2n)
+  const allMatch = ints.every((v) => v > 0n)
+  const foundIndex = ints.findIndex((v) => v === 2n)
+  const foundIndex2 = ints.findIndex((v) => v >= 2n && v < 3n)
+  const foundValue = ints.find((v) => v === 2n)
+  const foundValue2 = ints.find((v) => v >= 2n)
+  const includesTwo = ints2.includes(2n)
+  const indexTwo = ints2.indexOf(2n)
+  const indexMissing = ints2.indexOf(9n)
+  const concatResult = ints2.concat(list('int', [4n, 5n]))
+  const sliceAll = ints2.slice()
+  const sliceFrom = ints2.slice(1)
+  const sliceRange = ints2.slice(1, 3)
+
+  const lenAfterPush = ints.push(4n)
+  const lenAfterUnshift = ints.unshift(0n)
+  const popped = ints.pop()
+  const shifted = ints.shift()
+  const removed = ints.splice(1, 2)
+
+  f.printString(str(sum))
+  f.printString(str(anyMatch))
+  f.printString(str(allMatch))
+  f.printString(str(foundIndex))
+  f.printString(str(foundValue!))
+  f.printString(str(includesTwo))
+  f.printString(str(indexTwo))
+  f.printString(str(indexMissing))
+  f.printString(str(lenAfterPush))
+  f.printString(str(lenAfterUnshift))
+  f.printString(str(popped!))
+  f.printString(str(shifted!))
+  f.printString(str(f.getListLength(mapped)))
+  f.printString(str(f.getListLength(filtered)))
+  f.printString(str(f.getListLength(removed)))
+  f.printString(str(f.getListLength(concatResult)))
+  f.printString(str(f.getListLength(sliceAll)))
+  f.printString(str(f.getListLength(sliceFrom)))
+  f.printString(str(f.getListLength(sliceRange)))
+})

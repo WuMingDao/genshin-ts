@@ -1,0 +1,149 @@
+// @ts-nocheck thirdparty
+
+export class Counter {
+  private count = 0
+  constructor(start_from: number = 0) {
+    this.count = start_from
+  }
+  set lower_bound(v: number) {
+    if (v > this.count) this.count = v
+  }
+  get value() {
+    this.count++
+    return this.count
+  }
+}
+
+/** 节点 Index 计数器 */
+export const counter_index = new Counter()
+/** 节点动态 id 计数器 */
+export const counter_dynamic_id = new Counter()
+
+export function randomInt(len: number, starting: string = ''): number {
+  return Number(randomBigInt(len, starting))
+}
+export function randomBigInt(len: number, starting: string = ''): bigint {
+  let ret = ''
+  while (true) {
+    if (len > 8) {
+      ret += Math.random().toString(10).slice(-8)
+      len -= 8
+    } else {
+      ret += Math.random().toString(10).slice(-len)
+      break
+    }
+  }
+  if (ret[0] === '0') {
+    ret = Math.floor(Math.random() * 9 + 1).toString() + ret.slice(1)
+  }
+  if (starting.length > 0) {
+    return BigInt(starting + ret.slice(starting.length))
+  }
+  return BigInt(ret)
+}
+
+const names =
+  'the of and to in a is was that for as with by on are from be or his were it an at not which have he had this has also their but one can its other been more they used first all two citation than into would only time who most may such some many when after between over these her about there use no them new him will out during made both then often so any being such as where number could main through system people known each while if called convert same later three because well work before the same under part very different became year did large example several city early until much government found own since she even form power do those around state including set high life against second century within world still end using small name what now usually without however began like as well area make common the most water another way due must long less four death said film order due to back public does left based few become known as given country major place group considered among game point used to period support war music down million important systems control should took day family language last original result political line members case well as see single just process along similar take following we although countries right either times areas published the other local include population never data home every various the time modern further development per how led possible military popular term though history generally you off rather men law developed'.split(
+    ' '
+  )
+export function randomName(words_count: number = 1): string {
+  let res = []
+  while (words_count-- > 0) res.push(names[Math.floor(Math.random() * names.length)])
+  return res.join(' ')
+}
+
+/** 是否显示警告输出 */
+export const DEBUG = true
+/** 是否在错误时直接中断, 或返回空值 */
+export const STRICT = false
+
+export function panic<T>(msg?: string): T {
+  throw new Error('Panic: Unrecoverable error occurred.' + (msg ? ` Details: ${msg}` : ''))
+}
+export function todo<T>(msg?: string): T {
+  const err = 'TODO: Not implemented yet.' + (msg ? ` Details: ${msg}` : '')
+  if (STRICT) throw new Error(err)
+  if (DEBUG) console.error(err)
+  return 0 as any
+}
+
+export function exclude_keys(obj: any, ...keys: (string | string[])[]): any {
+  function remove_key(o: any, key: string[]) {
+    if (key.length === 1) {
+      delete o[key[0]]
+    } else {
+      const k = key[0]
+      if (o[k] === undefined) return
+      remove_key(o[k], key.slice(1))
+    }
+  }
+  const ret = structuredClone(obj)
+  for (const key of keys) {
+    if (typeof key === 'string') {
+      delete ret[key]
+    } else {
+      remove_key(ret, key)
+    }
+  }
+  return ret
+}
+
+export function assert(cond: boolean, msg?: string): asserts cond {
+  if (cond) return
+  throw new Error(msg ?? 'Assertion failed')
+}
+export function assertEq<T>(target: unknown, expect: T): asserts target is T {
+  if (target === expect) return
+  console.error('[Assertion]', target, '!==', expect)
+  throw new Error('Assertion failed')
+}
+export function assertDeepEq<T>(target: T, expect: T): asserts target is T {
+  const isObject = (v: any) => v && typeof v === 'object'
+  function deepEqual(a: any, b: any): boolean {
+    if (a === b) return true
+    if (isObject(a) && isObject(b)) {
+      const keysA = Object.keys(a)
+      const keysB = Object.keys(b)
+      if (keysA.length !== keysB.length) return false
+      for (const key of keysA) {
+        if (!deepEqual(a[key], b[key])) return false
+      }
+      return true
+    }
+    return false
+  }
+  if (deepEqual(target, expect)) return
+  console.error('[Assertion]', target, 'not deep equal to', expect)
+  throw new Error('Deep Assertion failed')
+}
+export function assertEqs<const T extends readonly any[]>(
+  target: unknown,
+  ...expects: T
+): asserts target is T[number] {
+  if (expects.some((v) => v === target)) return
+  console.error('[Assertion]', target, 'is not in', expects)
+  throw new Error('Assertion failed')
+}
+export function assertNotEq<T, Excluded>(
+  target: T | Excluded,
+  exclude: Excluded
+): asserts target is Exclude<T | Excluded, Excluded> {
+  if (target === exclude) {
+    debugger
+    console.error('[Assertion]', target, '===', exclude)
+    throw new Error(`Assert Unequal Failed`)
+  }
+}
+export function assertNotEqs<T, const Excluded extends readonly any[]>(
+  target: T | Excluded[number],
+  ...excludes: Excluded
+): asserts target is Exclude<T | Excluded[number], Excluded[number]> {
+  if (excludes.some((v) => v === target)) {
+    debugger
+    console.error('[Assertion]', target, 'is in', excludes)
+    throw new Error(`Assert Unequal Failed`)
+  }
+}
+export function empty(v: any): v is null | undefined {
+  return v === undefined || v === null
+}
