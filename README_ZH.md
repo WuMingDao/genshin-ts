@@ -13,7 +13,7 @@
 
 [English](README.md) · 简体中文
 
-[文档站](https://gsts.moe) · [模板文档和使用细节](create-genshin-ts/templates/start/README_ZH.md)
+[文档站](https://gsts.moe/zh) · [模板文档和使用细节](create-genshin-ts/templates/start/README_ZH.md)
 
 </div>
 
@@ -34,9 +34,9 @@ npm install
 npm run dev
 ```
 
-更详细的操作与边界规则见[模板文档](create-genshin-ts/templates/start/README_ZH.md)和[文档站](https://gsts.moe)：
+更详细的操作与边界规则见[模板文档](create-genshin-ts/templates/start/README_ZH.md)和[文档站](https://gsts.moe/zh)：
 - [`create-genshin-ts/templates/start/README_ZH.md`](create-genshin-ts/templates/start/README_ZH.md)
-- [https://gsts.moe](https://gsts.moe)
+- [https://gsts.moe](https://gsts.moe/zh)
 
 ## 核心亮点
 

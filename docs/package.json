@@ -1,0 +1,18 @@
+{
+  "name": "genshin-ts-docs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rspress build",
+    "dev": "rspress dev",
+    "preview": "rspress preview"
+  },
+  "dependencies": {
+    "rspress": "^1.40.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "rsbuild-plugin-open-graph": "^1.1.0",
+    "rspress-plugin-sitemap": "^1.2.1"
+  }
+}

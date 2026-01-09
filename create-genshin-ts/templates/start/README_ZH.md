@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-文档站：`https://gsts.moe`
+文档站：`https://gsts.moe/zh`
 
 ## 项目结构
 
