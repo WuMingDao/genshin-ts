@@ -228,16 +228,31 @@ export function findFolderEntryField(
   targetId: number
 ): { field: LenField; entry: FolderEntry } | undefined {
   const matches: Array<{ field: LenField; entry: FolderEntry }> = []
+  const contentMatches: Array<{ field: LenField; entry: FolderEntry }> = []
+  const metaMatches: Array<{ field: LenField; entry: FolderEntry }> = []
   for (const f of fields) {
     const isContentEntry = f.depth === 4 && f.p0 === 6 && f.p1 === 1 && f.p2 === 3 && f.p3 === 5
     const isMetaEntry =
       f.depth === 5 && f.p0 === 6 && f.p1 === 1 && f.p2 === 2 && f.p3 === 4 && f.p4 === 5
     if (!isContentEntry && !isMetaEntry) continue
     const entry = parseFolderEntry(payload.subarray(f.dataStart, f.dataEnd))
-    if (entry.id === targetId) matches.push({ field: f, entry })
+    if (entry.id === targetId) {
+      const record = { field: f, entry }
+      matches.push(record)
+      if (isContentEntry) {
+        contentMatches.push(record)
+      } else if (isMetaEntry) {
+        metaMatches.push(record)
+      }
+    }
   }
   if (matches.length > 1) {
-    throw new Error('[error] multiple folder entries found for target id')
+    if (contentMatches.length === 1) {
+      return contentMatches[0]
+    }
+    throw new Error(
+      `[error] multiple folder entries found for target id (content=${contentMatches.length}, meta=${metaMatches.length})`
+    )
   }
   return matches[0]
 }

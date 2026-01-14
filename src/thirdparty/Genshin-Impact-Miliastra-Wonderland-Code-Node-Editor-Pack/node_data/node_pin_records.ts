@@ -4264,31 +4264,18 @@ export const NODE_PIN_RECORDS = [
     name: "Check Entity's Elemental Effect Status",
     id: 788,
     inputs: ['Ety'],
-    outputs: [
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol',
-      'Bol'
-    ]
+    outputs: ['Bol', 'Bol', 'Bol', 'Bol', 'Bol', 'Bol', 'Bol', 'Bol', 'Bol', 'Bol', 'Bol', 'Bol']
   },
   {
     name: 'Enable/Disable Pathfinding Obstacle Feature',
     id: 789,
-    inputs: ['Ety', 'Bol'],
+    inputs: ['Ety', 'Unk', 'Bol'],
     outputs: []
   },
   {
     name: 'Enable/Disable Pathfinding Obstacle',
     id: 790,
-    inputs: ['Ety', 'Int', 'Bol'],
+    inputs: ['Unk', 'Ety', 'Int', 'Bol'],
     outputs: []
   },
   {
