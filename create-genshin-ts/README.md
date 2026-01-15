@@ -5,5 +5,5 @@ Scaffold a Genshin-TS project.
 ## Usage
 
 ```bash
-npm create genshin-ts
+npm create genshin-ts@latest
 ```

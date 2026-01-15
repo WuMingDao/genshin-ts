@@ -2,7 +2,7 @@
 
 ## Recommended
 ```bash
-npm create genshin-ts
+npm create genshin-ts@latest
 ```
 
 ## Requirements

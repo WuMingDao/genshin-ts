@@ -25,7 +25,7 @@ Genshin-TS (gsts) is a toolchain for building Miliastra Wonderland projects in T
 ## Quick Start
 
 ```bash
-npm create genshin-ts
+npm create genshin-ts@latest
 ```
 
 Then in the template:
@@ -71,7 +71,7 @@ Enabled by default (can be disabled in `gsts.config.ts`):
 
 ## How to Use
 
-- **Template**: `npm create genshin-ts` (recommended)
+- **Template**: `npm create genshin-ts@latest` (recommended)
 - **As a dependency**: `npm i genshin-ts` and call compiler/injector APIs in your project
 - **Global CLI**: `npm install -g genshin-ts`, then use `gsts` for compile/inject
 

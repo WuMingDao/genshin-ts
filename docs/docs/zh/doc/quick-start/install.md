@@ -2,7 +2,7 @@
 
 ## 推荐方式
 ```bash
-npm create genshin-ts
+npm create genshin-ts@latest
 ```
 
 ## 依赖环境

@@ -25,7 +25,7 @@ Genshin-TS（gsts）是一套使用Typescript进行千星奇域项目开发的�
 ## 快速开始
 
 ```bash
-npm create genshin-ts
+npm create genshin-ts@latest
 ```
 
 进入模板后：
@@ -71,7 +71,7 @@ npm run dev
 
 ## 使用方式
 
-- **模板工程**：`npm create genshin-ts`（推荐）
+- **模板工程**：`npm create genshin-ts@latest`（推荐）
 - **作为依赖**：`npm i genshin-ts`，在自有项目中调用编译器/注入器 API
 - **全局 CLI**：`npm install -g genshin-ts` 安装后使用 `gsts` 命令编译/注入
 
