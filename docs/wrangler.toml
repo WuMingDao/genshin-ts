@@ -1,0 +1,3 @@
+name = "genshin-ts-docs"
+compatibility_date = "2026-01-15"
+assets = { directory = "./doc_build" }
